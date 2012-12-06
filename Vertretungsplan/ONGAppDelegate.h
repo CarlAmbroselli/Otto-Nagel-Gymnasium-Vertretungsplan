@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ONGVPLanViewController.h"
+#import "PPRevealSideViewController.h"
 
 @interface ONGAppDelegate : UIResponder <UIApplicationDelegate>
 
