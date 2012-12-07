@@ -25,7 +25,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.tableView.backgroundColor = [UIColor colorWithRed:244/255.f green:241/255.f blue:232/255.f alpha:1.000];
+    self.tableView.backgroundColor = [UIColor whiteColor];
     self.tableView.separatorColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"separator.png"]];
     
     // Uncomment the following line to preserve selection between presentations.

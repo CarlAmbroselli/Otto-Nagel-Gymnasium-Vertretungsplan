@@ -20,6 +20,7 @@
     UIViewController *main = [[ONGVPLanViewController alloc] init];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:main];
     PPRevealSideViewController *_revealSideViewController = [[PPRevealSideViewController alloc] initWithRootViewController:nav];
+    [_revealSideViewController setPanInteractionsWhenClosed: PPRevealSideInteractionNone];
 
     //And finally this is our new super root view controller :)
     self.window.rootViewController = _revealSideViewController;
