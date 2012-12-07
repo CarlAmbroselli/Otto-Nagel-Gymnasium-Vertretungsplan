@@ -25,8 +25,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.tableView.backgroundColor = [UIColor darkGrayColor];
-    self.tableView.separatorColor = [UIColor colorWithRed:66/255.f green:66/255.f blue:66/255.f alpha:1.000];
+    self.tableView.backgroundColor = [UIColor colorWithRed:244/255.f green:241/255.f blue:232/255.f alpha:1.000];
+    self.tableView.separatorColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"separator.png"]];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -58,7 +58,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 4;
+    return 5;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -83,12 +83,15 @@
         case 3:
             cell.textLabel.text = @"1. Semester";
             break;
+        case 4:
+            cell.textLabel.text = @"3. Semester";
+            break;
             
         default:
             break;
     }
     
-    cell.textLabel.textColor = [UIColor lightGrayColor];
+    cell.textLabel.textColor = [UIColor colorWithRed:0/255.f green:107/255.f blue:168/255.f alpha:1.000];
     
     UIImage *accessoryImage = [UIImage imageNamed:@"accessory_disclosure.png"];
     UIImageView *accImageView = [[UIImageView alloc] initWithImage:accessoryImage];
@@ -127,6 +130,8 @@
             break;
         case 3:
             [userDefaults setObject:@"1. Semester" forKey:@"class"];
+        case 4:
+            [userDefaults setObject:@"3. Semester" forKey:@"class"];
             break;
             
         default:
