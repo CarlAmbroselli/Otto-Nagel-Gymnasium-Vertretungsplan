@@ -58,7 +58,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 5;
+    return 20;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -81,12 +81,56 @@
             cell.textLabel.text = @"Klasse 5.3";
             break;
         case 3:
-            cell.textLabel.text = @"1. Semester";
+            cell.textLabel.text = @"Klasse 6.1";
             break;
         case 4:
-            cell.textLabel.text = @"3. Semester";
+            cell.textLabel.text = @"Klasse 6.2";
             break;
-            
+        case 5:
+            cell.textLabel.text = @"Klasse 6.3";
+            break;
+        case 6:
+            cell.textLabel.text = @"Klasse 7.1";
+            break;
+        case 7:
+            cell.textLabel.text = @"Klasse 7.2";
+            break;
+        case 8:
+            cell.textLabel.text = @"Klasse 7.3";
+            break;
+        case 9:
+            cell.textLabel.text = @"Klasse 8.1";
+            break;
+        case 10:
+            cell.textLabel.text = @"Klasse 8.2";
+            break;
+        case 11:
+            cell.textLabel.text = @"Klasse 8.3";
+            break;
+        case 12:
+            cell.textLabel.text = @"Klasse 9.1";
+            break;
+        case 13:
+            cell.textLabel.text = @"Klasse 9.2";
+            break;
+        case 14:
+            cell.textLabel.text = @"Klasse 9.3";
+            break;
+        case 15:
+            cell.textLabel.text = @"Klasse 10.1";
+            break;
+        case 16:
+            cell.textLabel.text = @"Klasse 10.2";
+            break;
+        case 17:
+            cell.textLabel.text = @"Klasse 10.3";
+            break;
+        case 18:
+            cell.textLabel.text = @"1./2. Semester";
+            break;
+        case 19:
+            cell.textLabel.text = @"3./4. Semester";
+            break;
         default:
             break;
     }
@@ -129,11 +173,56 @@
             [userDefaults setObject:@"5.3" forKey:@"class"];
             break;
         case 3:
-            [userDefaults setObject:@"1. Semester" forKey:@"class"];
-        case 4:
-            [userDefaults setObject:@"3. Semester" forKey:@"class"];
+            [userDefaults setObject:@"6.1" forKey:@"class"];
             break;
-            
+        case 4:
+            [userDefaults setObject:@"6.2" forKey:@"class"];
+            break;
+        case 5:
+            [userDefaults setObject:@"6.3" forKey:@"class"];
+            break;
+        case 6:
+            [userDefaults setObject:@"7.1" forKey:@"class"];
+            break;
+        case 7:
+            [userDefaults setObject:@"7.2" forKey:@"class"];
+            break;
+        case 8:
+            [userDefaults setObject:@"7.3" forKey:@"class"];
+            break;
+        case 9:
+            [userDefaults setObject:@"8.1" forKey:@"class"];
+            break;
+        case 10:
+            [userDefaults setObject:@"8.2" forKey:@"class"];
+            break;
+        case 11:
+            [userDefaults setObject:@"8.3" forKey:@"class"];
+            break;
+        case 12:
+            [userDefaults setObject:@"9.1" forKey:@"class"];
+            break;
+        case 13:
+            [userDefaults setObject:@"9.2" forKey:@"class"];
+            break;
+        case 14:
+            [userDefaults setObject:@"9.3" forKey:@"class"];
+            break;
+        case 15:
+            [userDefaults setObject:@"10.1" forKey:@"class"];
+            break;
+        case 16:
+            [userDefaults setObject:@"10.2" forKey:@"class"];
+            break;
+        case 17:
+            [userDefaults setObject:@"10.3" forKey:@"class"];
+            break;
+        case 18:
+            [userDefaults setObject:@"1./2. Semester" forKey:@"class"];
+            break;
+        case 19:
+            [userDefaults setObject:@"3./4. Semester" forKey:@"class"];
+            break;
         default:
             break;
     }
