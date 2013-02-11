@@ -58,7 +58,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 20;
+    return 22;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -130,6 +130,12 @@
             break;
         case 19:
             cell.textLabel.text = @"3./4. Semester";
+            break;
+        case 20:
+            cell.textLabel.text = @"Komplett (Std.weise)";
+            break;
+        case 21:
+            cell.textLabel.text = @"Komplett (Kl.weise)";
             break;
         default:
             break;
@@ -222,6 +228,12 @@
             break;
         case 19:
             [userDefaults setObject:@"3./4. Semester" forKey:@"class"];
+            break;
+        case 20:
+            [userDefaults setObject:@"all" forKey:@"class"];
+            break;
+        case 21:
+            [userDefaults setObject:@"all2" forKey:@"class"];
             break;
         default:
             break;

@@ -33,6 +33,9 @@
         titleLabel.textAlignment = UITextAlignmentCenter;
         titleLabel.textColor = [UIColor blackColor];
         titleLabel.text = @"Keine Änderungen vorhanden!";
+        if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"class"] length] == 0) {
+            titleLabel.text = @"Bitte Klasse auswählen!";
+        }
         titleLabel.numberOfLines = 1;
         titleLabel.lineBreakMode = UILineBreakModeWordWrap;
         [_noChangesView addSubview:titleLabel];
@@ -69,6 +72,9 @@
     UIBarButtonItem *slideButton = [[UIBarButtonItem alloc] initWithImage:slideButtonImage style:UIBarButtonItemStylePlain target:self action:@selector(loadSidebar:)];
     self.navigationItem.leftBarButtonItem = slideButton;
     self.title = [[NSUserDefaults standardUserDefaults] objectForKey:@"class"];
+    if([[[NSUserDefaults standardUserDefaults] objectForKey:@"class"] isEqualToString: @"all"] || [[[NSUserDefaults standardUserDefaults] objectForKey:@"class"] isEqualToString: @"all2"]){
+        self.title = @"Komplettansicht";
+    }
     
     LeftViewController *left = [[LeftViewController alloc] initWithStyle:UITableViewStylePlain];
     [self.revealSideViewController preloadViewController:left forSide:PPRevealSideDirectionLeft];
@@ -136,25 +142,63 @@
         return;
     }
     
-    NSLog(suchKlasse);
-    
     NSMutableArray *tmpPlan = [[NSMutableArray alloc] init];
     NSData *jsonData = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://ongvertretungsplan.herokuapp.com/vplan.php"]];
     id jsonObjects = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:nil];
     NSArray *infos = [NSArray alloc];
     NSMutableArray *json = [NSMutableArray arrayWithArray:[jsonObjects allObjects]];
+    
+    NSLog(suchKlasse);
+    for(int i = 0; i < 2; i++){
     @try {
-    for (NSDictionary *klasse in [json objectAtIndex:0]) {
+    for (NSDictionary *klasse in [json objectAtIndex:i]) {
         NSLog(@"%@", [klasse objectForKey:@"klasse"]);
-        if([[klasse objectForKey:@"klasse"] isEqualToString:suchKlasse] || [[NSString stringWithFormat:@"%c", [[klasse objectForKey:@"klasse"] characterAtIndex:0]] isEqualToString:suchKlasse] || [[NSString stringWithFormat:@"W %c", [[klasse objectForKey:@"klasse"] characterAtIndex:0]] isEqualToString:suchKlasse] || [[NSString stringWithFormat:@"%cIG", [[klasse objectForKey:@"klasse"] characterAtIndex:0]] isEqualToString:suchKlasse] || [[klasse objectForKey:@"klasse"] isEqualToString:@"Sonderinfos"]){
-            NSArray *keys = [[klasse objectForKey:@"daten"] allKeys];
+        if([[klasse objectForKey:@"klasse"] isEqualToString:suchKlasse] || [[NSString stringWithFormat:@"%c", [suchKlasse characterAtIndex:0]] isEqualToString:[klasse objectForKey:@"klasse"]] || [[NSString stringWithFormat:@"W %c", [suchKlasse characterAtIndex:0]] isEqualToString:[klasse objectForKey:@"klasse"]] || [[NSString stringWithFormat:@"%cIG", [suchKlasse characterAtIndex:0]] isEqualToString:[klasse objectForKey:@"klasse"]] || [[klasse objectForKey:@"klasse"] isEqualToString:@"Sonderinfos"] || [suchKlasse isEqualToString:@"all"] || [suchKlasse isEqualToString:@"all2"]){
+            
+            NSMutableArray *keys;
+            
+            if ([[klasse objectForKey:@"daten"] isKindOfClass: [NSDictionary class]]) {
+                keys = [[klasse objectForKey:@"daten"] allKeys];
            
             for (NSString *key in keys){
-                [tmpPlan addObject:[NSDictionary dictionaryWithObjectsAndKeys:
-                        [[[klasse objectForKey:@"daten"] objectForKey:key] objectForKey:@"stunde"], @"stunde",
-                        [[[klasse objectForKey:@"daten"] objectForKey:key] objectForKey:@"info"], @"info",
-                         nil]];
+                if([suchKlasse isEqualToString:@"all"]){
+                    [tmpPlan addObject:[NSDictionary dictionaryWithObjectsAndKeys:
+                                        [NSString stringWithFormat:@"%@ - %@", [[[klasse objectForKey:@"daten"] objectForKey:key] objectForKey:@"stunde"], [klasse objectForKey:@"klasse"]], @"stunde",
+                                        [[[klasse objectForKey:@"daten"] objectForKey:key] objectForKey:@"info"], @"info",
+                                        nil]];
+                }
+                else if([suchKlasse isEqualToString:@"all2"]){
+                    [tmpPlan addObject:[NSDictionary dictionaryWithObjectsAndKeys:
+                                        [NSString stringWithFormat:@"%@ - %@", [klasse objectForKey:@"klasse"], [[[klasse objectForKey:@"daten"] objectForKey:key] objectForKey:@"stunde"]], @"stunde",
+                                        [[[klasse objectForKey:@"daten"] objectForKey:key] objectForKey:@"info"], @"info",
+                                        nil]];
+                }
+                else{
+                    [tmpPlan addObject:[NSDictionary dictionaryWithObjectsAndKeys:
+                            [[[klasse objectForKey:@"daten"] objectForKey:key] objectForKey:@"stunde"], @"stunde",
+                            [[[klasse objectForKey:@"daten"] objectForKey:key] objectForKey:@"info"], @"info",
+                             nil]];
+                }
 
+            }
+                
+            }
+            else {
+                for (NSString *key in keys){
+                    if([suchKlasse isEqualToString:@"all"]){
+                        [tmpPlan addObject:[NSDictionary dictionaryWithObjectsAndKeys:
+                                            [NSString stringWithFormat:@"%@ - %@", [klasse objectForKey:@"klasse"], [[klasse objectForKey:@"daten"] objectForKey:@"stunde"]], @"stunde",
+                                            [[klasse objectForKey:@"daten"] objectForKey:@"info"], @"info",
+                                            nil]];
+                    }
+                    else{
+                        [tmpPlan addObject:[NSDictionary dictionaryWithObjectsAndKeys:
+                                            [[[klasse objectForKey:@"daten"] objectForKey:key] objectForKey:@"stunde"], @"stunde",
+                                            [[[klasse objectForKey:@"daten"] objectForKey:key] objectForKey:@"info"], @"info",
+                                            nil]];
+                    }
+                    
+                }
             }
         }
     }
@@ -162,25 +206,7 @@
     @catch (NSException *exception) {
         NSLog(@"Server offline?");
     }
-    @try {
-        for (NSDictionary *klasse in [json objectAtIndex:1]) {
-            if([[klasse objectForKey:@"klasse"] isEqualToString:suchKlasse] || [[NSString stringWithFormat:@"%c", [[klasse objectForKey:@"klasse"] characterAtIndex:0]] isEqualToString:suchKlasse] || [[NSString stringWithFormat:@"W %c", [[klasse objectForKey:@"klasse"] characterAtIndex:0]] isEqualToString:suchKlasse] || [[NSString stringWithFormat:@"%cIG", [[klasse objectForKey:@"klasse"] characterAtIndex:0]] isEqualToString:suchKlasse] || [[klasse objectForKey:@"klasse"] isEqualToString:@"Sonderinfos"]){
-                NSArray *keys = [[klasse objectForKey:@"daten"] allKeys];
-                
-                for (NSString *key in keys){
-                    [tmpPlan addObject:[NSDictionary dictionaryWithObjectsAndKeys:
-                                        [[[klasse objectForKey:@"daten"] objectForKey:key] objectForKey:@"stunde"], @"stunde",
-                                        [[[klasse objectForKey:@"daten"] objectForKey:key] objectForKey:@"info"], @"info",
-                                        nil]];
-                    
-                }
-            }
-        }
     }
-    @catch (NSException *exception) {
-        NSLog(@"Only today is available, sry.");
-    }
-    
 
     
     NSSortDescriptor *sortDescriptor;
@@ -258,6 +284,9 @@
     
     NSString *text = [NSString stringWithFormat:@"%@ -> %@", alt, neu];
     CGSize textSize = [text sizeWithFont:[UIFont fontWithName:@"Signika Negative" size:18.0f] constrainedToSize:CGSizeMake(self.tableView.frame.size.width - PADDING * 3, 1000.0f)];
+    if ([[UIDevice currentDevice].model hasPrefix:@"iPad"]) {
+        textSize = [text sizeWithFont:[UIFont fontWithName:@"Signika Negative" size:18.0f] constrainedToSize:CGSizeMake(self.tableView.frame.size.width/2 -65 - PADDING * 3, 1000.0f)];
+    }
     
     return textSize.height + PADDING * 3;
 }
