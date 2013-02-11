@@ -21,7 +21,7 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Vertretungsplan/ONGVPLanViewController.m"
-         timestampString = "379415841.126989"
+         timestampString = "380118790.851209"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "146"
@@ -34,11 +34,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Vertretungsplan/ONGVPLanViewController.m"
-         timestampString = "379416905.311978"
+         timestampString = "380118752.566081"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "184"
-         endingLineNumber = "184"
+         startingLineNumber = "185"
+         endingLineNumber = "185"
          landmarkName = "-reloadData"
          landmarkType = "5">
       </FileBreakpoint>
@@ -47,11 +47,63 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Vertretungsplan/ONGVPLanViewController.m"
-         timestampString = "379415841.126989"
+         timestampString = "380118752.566081"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "145"
          endingLineNumber = "145"
+         landmarkName = "-reloadData"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Vertretungsplan/ONGVPLanViewController.m"
+         timestampString = "380118752.566081"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "149"
+         endingLineNumber = "149"
+         landmarkName = "-reloadData"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Vertretungsplan/ONGVPLanViewController.m"
+         timestampString = "380118752.566081"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "152"
+         endingLineNumber = "152"
+         landmarkName = "-reloadData"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Vertretungsplan/ONGVPLanViewController.m"
+         timestampString = "380118752.566081"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "165"
+         endingLineNumber = "165"
+         landmarkName = "-reloadData"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Vertretungsplan/ONGVPLanViewController.m"
+         timestampString = "380118752.566081"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "169"
+         endingLineNumber = "169"
          landmarkName = "-reloadData"
          landmarkType = "5">
       </FileBreakpoint>

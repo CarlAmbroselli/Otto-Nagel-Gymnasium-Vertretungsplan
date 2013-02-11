@@ -145,6 +145,7 @@
     NSMutableArray *json = [NSMutableArray arrayWithArray:[jsonObjects allObjects]];
     @try {
     for (NSDictionary *klasse in [json objectAtIndex:0]) {
+        NSLog(@"%@", [klasse objectForKey:@"klasse"]);
         if([[klasse objectForKey:@"klasse"] isEqualToString:suchKlasse] || [[NSString stringWithFormat:@"%c", [[klasse objectForKey:@"klasse"] characterAtIndex:0]] isEqualToString:suchKlasse] || [[NSString stringWithFormat:@"W %c", [[klasse objectForKey:@"klasse"] characterAtIndex:0]] isEqualToString:suchKlasse] || [[NSString stringWithFormat:@"%cIG", [[klasse objectForKey:@"klasse"] characterAtIndex:0]] isEqualToString:suchKlasse] || [[klasse objectForKey:@"klasse"] isEqualToString:@"Sonderinfos"]){
             NSArray *keys = [[klasse objectForKey:@"daten"] allKeys];
            
